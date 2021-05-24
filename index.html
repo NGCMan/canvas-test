@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<table style="squareWidth:100%">
+<body>
+  <tr>
+    <th>Square</th>
+    <th>Line</th>
+    <th>Circle?</th>
+  </tr>
+  <tr>
+<th>X position: <input type="number" id="squareXPos" value="100"></th>
+<th>Starting X position: <input type="number" id="lineStartingXPos" value="100"></th>
+<th>X position: <input type="number" id="circleXPos" value="100"></th>
+</tr>
+<tr>
+<th>Y position: <input type="number" id="squareYPos" value="100"></th>
+<th>Starting Y position: <input type="number" id="lineStartingYPos" value="100"></th>
+<th>Y position: <input type="number" id="circleYPos" value="75"></</th>
+</tr>
+<tr>
+<th>Width: <input type="number" id="squareWidth" value="100"></th>
+<th>Ending X position: <input type="number" id="lineEndingXPos" value="200"></th>
+<th>Radius: <input type="number" id="circleRadius" value="50"></</th>
+</tr>
+<tr>
+<th>Height: <input type="number" id="squareHeight" value="100"></th>
+<th>Ending Y position: <input type="number" id="lineEndingYPos" value="200"></th>
+<th>(Advanced) Starting angle: <input type="text" id="circleStartingAngle" value="0"></th>
+</tr>
+<tr>
+<th>N/A</th>
+<th>N/A</th>
+<th>(Advanced) Ending angle: <input type="text" id="circleEndingAngle" value="2 * Math.PI"></th>
+</tr>
+<tr>
+<th>N/A</th>
+<th>N/A</th>
+<th>(True/false) Counterclockwise?: <input type="text" id="circleCounterclockwise" value="false"></th>
+</tr>
+<tr>
+<th>Square Color: <input type="text" id="squareColor" value="black"></th>
+<th>Line Color: <input type="text" id="lineColor" value="black"></th>
+<th>Circle Color: <input type="text" id="circleColor" value="black"></</th>
+</tr>
+<p>JavaScript Math guide <a href="https://www.w3schools.com/js/js_math.asp">here.</a></p>
+<tr>
+<th><button onclick="squareFinish()">Draw a square!</button></th>
+<th><button onclick="lineFinish()">Draw a line!</button></th>
+<th><button onclick="circleFinish()">Draw a circle!</button></th>
+</tr>
+  </table>
+<br></br>
+<button onclick="clearCanvas()">Clear the canvas!</button>
+
+<br></br>
+<p id="error"></p>
+<canvas id="myCanvas" squareWidth="500" squareHeight="500" style="border:1px solid #000000;">
+
+<script>
+/*function myFunction() {
+  var x = document.getElementById("myNumber").value;
+  document.getElementById("demo").innerHTML = x;
+}*/
+
+var squareXPos = 100;
+var squareYPos = 100;
+var squareWidth = 100;
+var squareHeight = 100;
+var squareColor = "black";
+
+var lineStartingXPos = 100;
+var lineStartingYPos = 100;
+var lineEndingXPos = 200;
+var lineEndingYPos = 200;
+var lineColor = "black";
+
+var circleXPos = 100
+var circleYPos = 75
+var circleRadius = 50
+var circleStartingAngle = 0
+var circleEndingAngle = 2 * Math.PI
+var circleCounterclockwise = "false";
+var circleColor = "black";
+
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+function setsquareXPos() {
+squareXPos = document.getElementById("squareXPos").value;
+}
+
+function setsquareYPos() {
+squareYPos = document.getElementById("squareYPos").value;
+}
+
+function setsquareWidth() {
+squareWidth = document.getElementById("squareWidth").value;
+}
+
+function setsquareHeight() {
+squareHeight = document.getElementById("squareHeight").value;
+}
+
+function setsquareColor() {
+squareColor = document.getElementById("squareColor").value;
+}
+
+
+function setlineStartingXPos() {
+lineStartingXPos = document.getElementById("lineStartingXPos").value;
+}
+
+function setlineStartingYPos() {
+lineStartingYPos = document.getElementById("lineStartingYPos").value;
+}
+
+function setlineEndingXPos() {
+lineEndingXPos = document.getElementById("lineEndingXPos").value;
+}
+
+function setlineEndingYPos() {
+lineEndingYPos = document.getElementById("lineEndingYPos").value;
+}
+
+function setlineColor() {
+lineColor = document.getElementById("lineColor").value
+}
+
+function setcircleXPos() {
+circleXPos = document.getElementById("circleXPos").value;
+}
+
+function setcircleYPos() {
+circleYPos = document.getElementById("circleYPos").value;
+}
+
+function setcircleRadius() {
+circleRadius = document.getElementById("circleRadius").value
+}
+
+function setcircleStartingAngle() {
+circleStartingAngle = document.getElementById("circleStartingAngle").value
+}
+
+function setcircleEndingAngle() {
+circleEndingAngle = document.getElementById("circleEndingAngle").value
+}
+
+//Add circle counterclockwise here, as it's special.
+
+function setcircleColor() {
+circleColor = document.getElementById("circleColor").value
+}
+
+function squareFinish() {
+setsquareXPos();
+setsquareYPos();
+setsquareWidth();
+setsquareHeight();
+setsquareColor();
+ctx.strokeStyle = squareColor;
+ctx.rect(squareXPos, squareYPos, squareWidth, squareHeight);
+ctx.stroke();
+if (parseInt(squareXPos) + parseInt(squareWidth) > 500) {
+document.getElementById('error').innerHTML = ""
+} else if (parseInt(squareYPos) + parseInt(squareWidth) > 500) {
+document.getElementById('error').innerHTML = ""
+} else if (parseInt(squareXPos) + parseInt(squareHeight) > 500) {
+document.getElementById('error').innerHTML = ""
+} else if (parseInt(squareYPos) + parseInt(squareHeight) > 500) {
+document.getElementById('error').innerHTML = ""
+} else {
+document.getElementById('error').innerHTML = ""
+}
+}
+
+function lineFinish() {
+setlineStartingXPos();
+setlineStartingYPos();
+setlineEndingXPos();
+setlineEndingYPos();
+setlineColor();
+/*
+parseInt(lineStartingXPos);
+parseInt(lineStartingYPos);
+parseInt(lineEndingXPos);
+parseInt(lineEndingYPos);
+*/
+ctx.beginPath();
+ctx.moveTo(lineStartingXPos, lineStartingYPos);
+ctx.lineTo(lineEndingXPos, lineEndingYPos);
+ctx.strokeStyle = lineColor;
+ctx.stroke();
+}
+
+function circleFinish() {
+setcircleXPos();
+setcircleYPos();
+setcircleRadius();
+setcircleStartingAngle();
+setcircleEndingAngle();
+setcircleColor();
+ctx.beginPath();
+ctx.arc(circleXPos, circleYPos, circleRadius, circleStartingAngle, eval(circleEndingAngle));
+ctx.strokeStyle = circleColor;
+ctx.stroke();
+}
+
+function clearCanvas() {
+myCanvas.width = myCanvas.width
+}
+
+</script>
+
+</body>
+</html>
