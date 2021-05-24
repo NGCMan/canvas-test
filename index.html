@@ -163,7 +163,11 @@ setsquareWidth();
 setsquareHeight();
 setsquareColor();
 ctx.strokeStyle = squareColor;
+if (fillSquare.checked == true) {
+ctx.fillRect(squareXPos, squareYPos, squareWidth, squareHeight);
+} else {
 ctx.rect(squareXPos, squareYPos, squareWidth, squareHeight);
+}
 ctx.stroke();
 if (parseInt(squareXPos) + parseInt(squareWidth) > 500) {
 document.getElementById('error').innerHTML = ""
@@ -207,7 +211,11 @@ setcircleColor();
 ctx.beginPath();
 ctx.arc(circleXPos, circleYPos, circleRadius, circleStartingAngle, eval(circleEndingAngle));
 ctx.strokeStyle = circleColor;
+if (fillSquare.checked == true) {
+ctx.fill();
+} else {
 ctx.stroke();
+}
 }
 
 function clearCanvas() {
